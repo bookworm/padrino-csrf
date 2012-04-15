@@ -11,7 +11,7 @@ module Padrino
       # @since 0.1.0
       # @api semipublic
       def csrf_valid?                
-        return true if content_type == :json or content_type == :xml
+        return true if mime_type(:json) == request.preferred_type or mime_type(:xml) == request.preferred_type
         csrf_token == params[csrf_param] || csrf_token == request.env['HTTP_X_CSRF_TOKEN']
       end
 
